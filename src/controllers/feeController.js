@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { Fee, Student, Class } = require('../models');
 const { asyncHandler } = require('../middleware/errorHandler');
 const { PAGINATION } = require('../config/constants');
+const stripe = require('../config/stripe');
 
 const getFees = asyncHandler(async (req, res) => {
   const page = parseInt(req.query.page) || PAGINATION.DEFAULT_PAGE;
@@ -412,6 +413,110 @@ async function updateStudentFeeStatus(studentId) {
   await Student.findByIdAndUpdate(studentId, { fee_status: newStatus });
 }
 
+/**
+ * @desc    Create Stripe PaymentIntent for a fee
+ * @route   POST /api/fees/:id/payment-intent
+ * @access  Private
+ */
+const createPaymentIntent = asyncHandler(async (req, res) => {
+  const fee = await Fee.findById(req.params.id);
+
+  if (!fee) {
+    return res.status(404).json({
+      success: false,
+      message: 'Fee not found',
+      errors: ['No fee found with this ID']
+    });
+  }
+
+  if (fee.status === 'paid' || fee.status === 'cancelled') {
+    return res.status(400).json({
+      success: false,
+      message: 'Invalid fee status for payment',
+      errors: [`Cannot pay for a fee that is already ${fee.status}`]
+    });
+  }
+
+  const amountToPay = fee.amount - fee.paid_amount;
+  if (amountToPay <= 0) {
+    return res.status(400).json({
+      success: false,
+      message: 'Fee already fully paid',
+      errors: ['No outstanding balance for this fee']
+    });
+  }
+
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: Math.round(amountToPay * 100), // Stripe expects amounts in cents
+    currency: 'usd', // Adjust currency as needed
+    automatic_payment_methods: {
+      enabled: true,
+    },
+    metadata: {
+      fee_id: fee._id.toString(),
+      student_id: fee.student_id.toString()
+    },
+  });
+
+  res.status(200).json({
+    success: true,
+    message: 'Payment intent created successfully',
+    data: {
+      clientSecret: paymentIntent.client_secret,
+      amount: amountToPay
+    }
+  });
+});
+
+/**
+ * @desc    Handle Stripe Webhook
+ * @route   POST /api/fees/webhook
+ * @access  Public
+ */
+const handleStripeWebhook = asyncHandler(async (req, res) => {
+  const sig = req.headers['stripe-signature'];
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(
+      req.rawBody || req.body, // Use rawBody preserved in server.js
+      sig,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+  } catch (err) {
+    console.error(`Webhook Error: ${err.message}`);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  // Handle the event
+  if (event.type === 'payment_intent.succeeded') {
+    const paymentIntent = event.data.object;
+    const feeId = paymentIntent.metadata.fee_id;
+
+    const fee = await Fee.findById(feeId);
+    if (fee) {
+      const amountPaid = paymentIntent.amount / 100;
+
+      fee.addPayment({
+        amount: amountPaid,
+        payment_method: 'online',
+        transaction_id: paymentIntent.id,
+        received_by: null, // Online payment
+        notes: `Stripe PaymentIntent: ${paymentIntent.id}`
+      });
+
+      await fee.save();
+      await updateStudentFeeStatus(fee.student_id);
+
+      console.log(`Payment Succeeded for fee: ${feeId}`);
+    }
+  }
+
+  // Return a 200 response to acknowledge receipt of the event
+  res.json({ received: true });
+});
+
 module.exports = {
   getFees,
   getStudentFees,
@@ -419,5 +524,7 @@ module.exports = {
   recordPayment,
   getClassFeeReport,
   updateFee,
-  deleteFee
+  deleteFee,
+  createPaymentIntent,
+  handleStripeWebhook
 };
