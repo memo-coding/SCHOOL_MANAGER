@@ -1,0 +1,50 @@
+[1m[34m
+╔═══════════════════════════════════════════════════════════╗
+║         Socket.IO Real-time Communication Tests          ║
+╚═══════════════════════════════════════════════════════════╝
+[0m
+
+Testing server at: [1mhttp://localhost:5001[0m
+
+
+[1m[36m━━━ Socket.IO Connection Tests ━━━[0m
+
+[31m✗[0m Socket.IO Connection
+  [33mAuthentication error: No token provided[0m
+
+[1m[36m━━━ Authenticated Socket Connection Tests ━━━[0m
+
+[31m✗[0m Login Student 1
+  [33mFailed to get token[0m
+
+[1m[36m━━━ Chat Messaging Tests ━━━[0m
+
+[33m⚠ Skipping chat tests - no authentication token[0m
+
+[1m[36m━━━ Message Read Status Tests ━━━[0m
+
+[33m⚠ Skipping read status tests - no authentication token[0m
+
+[1m[36m━━━ Schedule Notification Tests ━━━[0m
+
+[33m⚠ Skipping schedule tests - no authentication token[0m
+
+[1m[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[1m      SOCKET.IO TEST SUMMARY REPORT[0m
+[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+
+Total Tests:   [1m2[0m
+Passed:        [32m0[0m
+Failed:        [31m2[0m
+Success Rate:  [1m0.00%[0m
+
+[31m[1mFailed Tests:[0m
+  [31m✗[0m Socket.IO Connection
+    [33mAuthentication error: No token provided[0m
+  [31m✗[0m Login Student 1
+    [33mFailed to get token[0m
+
+[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+
+[34mReport saved to: /home/memo/SchoolManagerDB/server/socket-test-report.json[0m
+

@@ -1,0 +1,19 @@
+{
+  "total": 2,
+  "passed": 0,
+  "failed": 2,
+  "tests": [
+    {
+      "name": "Socket.IO Connection",
+      "passed": false,
+      "message": "Authentication error: No token provided",
+      "timestamp": "2026-02-03T14:18:36.668Z"
+    },
+    {
+      "name": "Login Student 1",
+      "passed": false,
+      "message": "Failed to get token",
+      "timestamp": "2026-02-03T14:18:36.737Z"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+
+> school-management-system@1.0.0 start
+> node server.js
+
+MongoDB Local Connected: localhost
+Initializing default data...
+Default permissions initialized
+Super Admin already exists
+Checking for ClassSubjects with missing status...
+Default data initialization complete
+Server running on port 5001
+Environment: development
+[0mGET /api/health [32m200[0m 23.392 ms - 113[0m
+[0mGET / [32m200[0m 2.057 ms - 425[0m
+[0mGET /api/health [32m200[0m 2.647 ms - 113[0m
+[0mPOST /api/auth/login [32m200[0m 287.196 ms - 684[0m
+[0mPOST /api/auth/login [32m200[0m 181.809 ms - 680[0m
+[0mPOST /api/auth/login [32m200[0m 252.301 ms - 680[0m
+[0mGET /api/auth/me [32m200[0m 62.176 ms - 508[0m
+[0mPOST /api/auth/register [33m400[0m 10.955 ms - 171[0m
+[DEBUG] getStudents: Found 1 students out of 1 total
+[0mGET /api/students?page=1&limit=10 [32m200[0m 1335.540 ms - 1358[0m
+[0mGET /api/students/696b6fa9a8c13629af580701 [32m200[0m 146.875 ms - 987[0m
+[DEBUG] getStudentDetails for student STU24001:
+  - Student ID: 696b6fa9a8c13629af580701
+  - Class ID found: 696b7340a8c13629af580879
+  - StudentSubjects count: 0
+  - ClassSubjects count: 4
+[0mGET /api/students/696b6fa9a8c13629af580701/details [32m200[0m 400.430 ms - 3521[0m
+[0mGET /api/teachers [32m200[0m 101.230 ms - 1785[0m
+[0mGET /api/classes [32m200[0m 99.299 ms - 2471[0m
+[0mGET /api/subjects [32m200[0m 42.051 ms - 1962[0m
+[0mGET /api/schedules/my-schedule [32m200[0m 105.474 ms - 36[0m
+[0mGET /api/schedules [32m200[0m 107.260 ms - 3745[0m
+[0mGET /api/fees [32m200[0m 76.846 ms - 3159[0m
+[0mGET /api/absences [32m200[0m 175.632 ms - 10689[0m
+[0mGET /api/courses [32m200[0m 73.999 ms - 26[0m
+[0mGET /api/exams/independent [32m200[0m 132.285 ms - 26[0m
+[0mGET /api/chat/contacts [32m200[0m 263.552 ms - 326[0m
+[0mGET /api/notifications [32m200[0m 430.003 ms - 26[0m
+[0mGET /api/dashboard/stats [32m200[0m 119.017 ms - 1870[0m
+[0mGET /api/dashboard/attendance-stats [32m200[0m 648.117 ms - 640[0m
+[getSystemActivities] Filters: {
+  type: undefined,
+  search: undefined,
+  startDate: undefined,
+  endDate: undefined,
+  page: 1,
+  limit: 20
+}
+[getSystemActivities] Fetched 1 students and 4 absences.
+[getSystemActivities] Returning 5 activities.
+[0mGET /api/dashboard/activities [32m200[0m 63.360 ms - 1074[0m
+[0mPOST /api/auth/login [33m401[0m 17.913 ms - 93[0m

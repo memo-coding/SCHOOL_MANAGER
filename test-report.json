@@ -1,0 +1,250 @@
+{
+  "total": 24,
+  "passed": 23,
+  "failed": 1,
+  "skipped": 0,
+  "tests": [
+    {
+      "name": "Server Root Endpoint",
+      "passed": true,
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"School Management System API\",\"data\":{\"version\":\"1.0.0\",\"documentation\":\"/api/health\",\"endpoints\":{\"auth\":\"/api/auth\",\"users\":\"/api/users\",\"students\":\"/api/students\",\"teache"
+      },
+      "timestamp": "2026-02-03T14:38:35.868Z"
+    },
+    {
+      "name": "Health Check Endpoint",
+      "passed": true,
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"API is running\",\"data\":{\"timestamp\":\"2026-02-03T14:38:35.870Z\",\"uptime\":62.25356717}}"
+      },
+      "timestamp": "2026-02-03T14:38:35.872Z"
+    },
+    {
+      "name": "Login as superAdmin",
+      "passed": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmI2ZmE2YThjMTM2MjlhZjU4MDZkMyIsImlhdCI6MTc3MDEyOTUxNiwiZXhwIjoxNzcwNzM0MzE2fQ.fUuZw08CtweFqj996AVebTfjlYzug3gQYT8SlMxiFyI",
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Login successful\",\"data\":{\"user\":{\"last_schedule_viewed\":\"1970-01-01T00:00:00.000Z\",\"_id\":\"696b6fa6a8c13629af5806d3\",\"username\":\"superadmin\",\"email\":\"admin@school.com\",\"role"
+      },
+      "timestamp": "2026-02-03T14:38:36.061Z"
+    },
+    {
+      "name": "Login as teacher",
+      "passed": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmI2ZmE3YThjMTM2MjlhZjU4MDZlYSIsImlhdCI6MTc3MDEyOTUxNiwiZXhwIjoxNzcwNzM0MzE2fQ.juQrR3fHa2MIDzJ58lYMTeDwGXejb55AtMQ40xEMHYQ",
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Login successful\",\"data\":{\"user\":{\"last_schedule_viewed\":\"1970-01-01T00:00:00.000Z\",\"_id\":\"696b6fa7a8c13629af5806ea\",\"username\":\"teacher1\",\"email\":\"teacher1@school.com\",\"rol"
+      },
+      "timestamp": "2026-02-03T14:38:36.193Z"
+    },
+    {
+      "name": "Login as student",
+      "passed": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NmI2ZmE4YThjMTM2MjlhZjU4MDZmYyIsImlhdCI6MTc3MDEyOTUxNiwiZXhwIjoxNzcwNzM0MzE2fQ.Hq23L5sOJAdR4mJXISI-QCyJ8X73J7We_iLVgqppxFc",
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Login successful\",\"data\":{\"user\":{\"last_schedule_viewed\":\"1970-01-01T00:00:00.000Z\",\"_id\":\"696b6fa8a8c13629af5806fc\",\"username\":\"student1\",\"email\":\"student1@school.com\",\"rol"
+      },
+      "timestamp": "2026-02-03T14:38:36.345Z"
+    },
+    {
+      "name": "Get Current User (Super Admin)",
+      "passed": true,
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"User profile retrieved\",\"data\":{\"user\":{\"last_schedule_viewed\":\"1970-01-01T00:00:00.000Z\",\"_id\":\"696b6fa6a8c13629af5806d3\",\"username\":\"superadmin\",\"email\":\"admin@school.com\""
+      },
+      "timestamp": "2026-02-03T14:38:36.361Z"
+    },
+    {
+      "name": "User Registration",
+      "passed": false,
+      "message": "Status: 400, Message: Validation failed",
+      "response": {
+        "statusCode": 400,
+        "body": "{\"success\":false,\"message\":\"Validation failed\",\"errors\":[\"Username is required\",\"Username must be at least 3 characters\",\"First name is required\",\"Last name is required\"]}"
+      },
+      "timestamp": "2026-02-03T14:38:36.375Z"
+    },
+    {
+      "name": "Get Students List",
+      "passed": true,
+      "message": "Found 1 students",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Students retrieved successfully\",\"data\":{\"students\":[{\"_id\":\"696b6fa9a8c13629af580701\",\"user_id\":{\"_id\":\"696b6fa8a8c13629af5806fc\",\"username\":\"student1\",\"email\":\"student1@sc"
+      },
+      "timestamp": "2026-02-03T14:38:36.522Z"
+    },
+    {
+      "name": "Get Student Details",
+      "passed": true,
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Student retrieved successfully\",\"data\":{\"student\":{\"_id\":\"696b6fa9a8c13629af580701\",\"user_id\":{\"_id\":\"696b6fa8a8c13629af5806fc\",\"username\":\"student1\",\"email\":\"student1@schoo"
+      },
+      "timestamp": "2026-02-03T14:38:36.561Z"
+    },
+    {
+      "name": "Get Student Extended Details",
+      "passed": true,
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Student details retrieved successfully\",\"data\":{\"student\":{\"_id\":\"696b6fa9a8c13629af580701\",\"user_id\":{\"_id\":\"696b6fa8a8c13629af5806fc\",\"username\":\"student1\",\"email\":\"studen"
+      },
+      "timestamp": "2026-02-03T14:38:36.677Z"
+    },
+    {
+      "name": "Get Teachers List",
+      "passed": true,
+      "message": "Found 0 teachers",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Teachers retrieved successfully\",\"data\":{\"teachers\":[{\"_id\":\"696b6fa8a8c13629af5806f2\",\"user_id\":{\"_id\":\"696b6fa8a8c13629af5806ed\",\"username\":\"teacher2\",\"email\":\"teacher2@sc"
+      },
+      "timestamp": "2026-02-03T14:38:36.714Z"
+    },
+    {
+      "name": "Get Classes List",
+      "passed": true,
+      "message": "Found 0 classes",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Classes retrieved successfully\",\"data\":{\"classes\":[{\"_id\":\"696b6fa7a8c13629af5806e4\",\"class_name\":\"Grade 1 - Section A\",\"grade\":1,\"section\":\"A\",\"academic_year\":\"2024-2025\",\""
+      },
+      "timestamp": "2026-02-03T14:38:36.738Z"
+    },
+    {
+      "name": "Get Subjects List",
+      "passed": true,
+      "message": "Found 0 subjects",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Subjects retrieved successfully\",\"data\":{\"subjects\":[{\"_id\":\"696b7405a8c13629af580932\",\"subject_name\":\"Arabic\",\"subject_code\":\"ARB11\",\"description\":\"\",\"credits\":1,\"category\""
+      },
+      "timestamp": "2026-02-03T14:38:36.753Z"
+    },
+    {
+      "name": "Get My Schedule (Student)",
+      "passed": true,
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"count\":0,\"data\":[]}"
+      },
+      "timestamp": "2026-02-03T14:38:36.768Z"
+    },
+    {
+      "name": "Get All Schedules (Admin)",
+      "passed": true,
+      "message": "Found 4 schedules",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"count\":4,\"data\":[{\"_id\":\"696b8b4801856e193f68e227\",\"class_id\":{\"_id\":\"696b6fa7a8c13629af5806e4\",\"class_name\":\"Grade 1 - Section A\",\"grade\":1,\"section\":\"A\",\"id\":\"696b6fa7a8c13629af5806"
+      },
+      "timestamp": "2026-02-03T14:38:36.791Z"
+    },
+    {
+      "name": "Get Fees List",
+      "passed": true,
+      "message": "Found 3 fees",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Fees retrieved successfully\",\"data\":{\"fees\":[{\"_id\":\"696b6fa9a8c13629af58070a\",\"student_id\":null,\"academic_year\":\"2024-2025\",\"term\":\"first\",\"fee_type\":\"tuition\",\"amount\":500"
+      },
+      "timestamp": "2026-02-03T14:38:36.815Z"
+    },
+    {
+      "name": "Get Absences List",
+      "passed": true,
+      "message": "Found 4 absences",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"message\":\"Absences retrieved successfully\",\"data\":{\"absences\":[{\"_id\":\"696e2899ebb87fc137ea2384\",\"student_id\":{\"_id\":\"696b6fa9a8c13629af580701\",\"user_id\":{\"_id\":\"696b6fa8a8c13629af580"
+      },
+      "timestamp": "2026-02-03T14:38:36.866Z"
+    },
+    {
+      "name": "Get Courses List",
+      "passed": true,
+      "message": "Found 0 courses",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"data\":[]}"
+      },
+      "timestamp": "2026-02-03T14:38:36.893Z"
+    },
+    {
+      "name": "Get Independent Exams",
+      "passed": true,
+      "message": "Found 0 exams",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"data\":[]}"
+      },
+      "timestamp": "2026-02-03T14:38:36.942Z"
+    },
+    {
+      "name": "Get Chat Contacts",
+      "passed": true,
+      "message": "Found 1 contacts",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"data\":[{\"_id\":\"696b6fa6a8c13629af5806d3\",\"username\":\"superadmin\",\"role\":\"super_admin\",\"personal_info\":{\"first_name\":\"Super\",\"last_name\":\"Admin\",\"phones\":[{\"number\":\"1234567890\",\"type\""
+      },
+      "timestamp": "2026-02-03T14:38:36.972Z"
+    },
+    {
+      "name": "Get Notifications",
+      "passed": true,
+      "message": "Found 0 notifications",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"data\":[]}"
+      },
+      "timestamp": "2026-02-03T14:38:36.983Z"
+    },
+    {
+      "name": "Get Dashboard Stats",
+      "passed": true,
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"data\":{\"students\":{\"total\":1,\"active\":1},\"teachers\":{\"total\":2},\"classes\":{\"total\":6},\"users\":{\"total\":6},\"fees\":{\"paid\":0,\"pending\":1,\"overdue\":0,\"partial\":0},\"financialHealth\":{\"pai"
+      },
+      "timestamp": "2026-02-03T14:38:37.044Z"
+    },
+    {
+      "name": "Get Attendance Stats",
+      "passed": true,
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"data\":[{\"label\":\"Mar\",\"absences\":0,\"month\":3,\"year\":2025},{\"label\":\"Apr\",\"absences\":0,\"month\":4,\"year\":2025},{\"label\":\"May\",\"absences\":0,\"month\":5,\"year\":2025},{\"label\":\"Jun\",\"absence"
+      },
+      "timestamp": "2026-02-03T14:38:37.376Z"
+    },
+    {
+      "name": "Get System Activities",
+      "passed": true,
+      "message": "",
+      "response": {
+        "statusCode": 200,
+        "body": "{\"success\":true,\"data\":{\"activities\":[{\"id\":\"696e2899ebb87fc137ea2384\",\"type\":\"absence_report\",\"action\":\"Reported Absence\",\"target\":\"Alex Brown\",\"actor\":\"Super Admin\",\"date\":\"2026-01-19T12:50:33.386Z\""
+      },
+      "timestamp": "2026-02-03T14:38:37.426Z"
+    }
+  ],
+  "startTime": "2026-02-03T14:38:35.838Z",
+  "endTime": "2026-02-03T14:38:37.427Z"
+}

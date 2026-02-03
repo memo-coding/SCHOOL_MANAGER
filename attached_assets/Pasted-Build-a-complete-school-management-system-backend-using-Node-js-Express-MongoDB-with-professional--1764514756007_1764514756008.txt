@@ -1,0 +1,147 @@
+Build a complete school management system backend using Node.js, Express, MongoDB with professional database design.
+
+## Technical Requirements:
+- Node.js + Express
+- MongoDB with Mongoose
+- JWT Authentication
+- Multi-role permission system
+- Comprehensive validations
+
+## User Roles:
+1. SUPER_ADMIN - Full permissions
+2. ADMIN - Content management without delete
+3. TEACHER - Attendance recording and reports
+4. STUDENT - View own data only
+
+## Required Models:
+
+### 1. User
+- username, email, password, role
+- personal_info: first_name, last_name, phones[], addresses[]
+- is_active, last_login, timestamps
+
+### 2. Student
+- user_id (reference to User)
+- student_code (unique)
+- class_id (reference to Class)
+- parent_info: father{}, mother{}, guardian{}
+- academic_status: active/transferred/graduated/suspended
+- fee_status: paid/pending/overdue/partial
+
+### 3. Teacher
+- user_id (reference to User)
+- teacher_code (unique)
+- subjects[] (references to Subject)
+- specialization, employment_date, status
+
+### 4. Class
+- class_name, grade, section
+- academic_year, capacity, current_students
+- head_teacher (reference to Teacher)
+- status: active/inactive
+
+### 5. Subject
+- subject_name, subject_code (unique)
+- description, credits
+
+### 6. ClassSubject (Class-Subject Relationship)
+- class_id, subject_id (references)
+- teachers[]: teacher_id, is_primary, schedule[]
+- academic_year, status
+
+### 7. Absence
+- student_id, class_subject_id (references)
+- date, session, period, reason
+- reported_by (reference to User)
+- status: pending/approved/rejected
+
+### 8. Fee
+- student_id (reference)
+- academic_year, term, fee_type
+- amount, due_date, paid_amount, payment_date
+- status: paid/pending/overdue/partial/cancelled
+- payment_method, transaction_id, notes
+- created_by (reference to User)
+
+### 9. Permission
+- role, permissions{} (for each resource: create, read, update, delete)
+
+## Database Relationships:
+- Student ↔ User (one-to-one)
+- Teacher ↔ User (one-to-one)
+- Class ↔ Student (one-to-many)
+- Class ↔ ClassSubject (one-to-many)
+- Subject ↔ ClassSubject (one-to-many)
+- Student ↔ Absence (one-to-many)
+- Student ↔ Fee (one-to-many)
+
+## Required APIs:
+
+### Authentication
+- POST /api/auth/login
+- POST /api/auth/register
+- GET /api/auth/me
+
+### Students
+- GET /api/students
+- GET /api/students/:id
+- GET /api/students/:id/details (with subjects and absence)
+- POST /api/students
+- PUT /api/students/:id
+- DELETE /api/students/:id
+
+### Fees
+- GET /api/fees/student/:student_id
+- POST /api/fees
+- POST /api/fees/payment
+- GET /api/fees/class/:class_id/report
+
+### Teachers
+- GET /api/teachers
+- GET /api/teachers/:id
+- POST /api/teachers
+
+### Classes
+- GET /api/classes
+- GET /api/classes/:id
+- POST /api/classes
+
+### Subjects
+- GET /api/subjects
+- GET /api/subjects/:id
+- POST /api/subjects
+
+### Absences
+- GET /api/absences
+- POST /api/absences
+- PUT /api/absences/:id
+
+## Advanced Features:
+
+### 1. Dynamic Permission System
+- Each role has specific permissions
+- Middleware for permission checking
+
+### 2. Data Aggregation
+- Automatic absence days calculation from absence records
+- Automatic fee status updates
+- Advanced reporting
+
+### 3. Initial Data
+- Automatic super admin user creation
+- Default permissions setup
+
+## Security Requirements:
+- Password encryption with bcrypt
+- Data validation
+- Centralized error handling
+- CORS configuration
+
+## Expected Response:
+- Complete project structure
+- All models with relationships
+- Basic APIs
+- Authentication and permission middleware
+- Initial demo data
+
+Focus on professional database design and table relationships!

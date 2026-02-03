@@ -1,0 +1,94 @@
+[1m[34m
+╔═══════════════════════════════════════════════════════════╗
+║     School Management System - Comprehensive Tests        ║
+╚═══════════════════════════════════════════════════════════╝
+[0m
+
+Testing server at: [1mhttp://localhost:5001[0m
+
+
+[1m[36m━━━ Phase 1: Infrastructure Tests ━━━[0m
+
+[32m✓[0m Server Root Endpoint
+[32m✓[0m Health Check Endpoint
+
+[1m[36m━━━ Phase 2: Authentication Tests ━━━[0m
+
+[32m✓[0m Login as superAdmin
+[32m✓[0m Login as teacher
+[32m✓[0m Login as student
+[32m✓[0m Get Current User (Super Admin)
+[31m✗[0m User Registration
+  [33mStatus: 400, Message: Validation failed[0m
+
+[1m[36m━━━ Phase 3: Students Management Tests ━━━[0m
+
+[32m✓[0m Get Students List
+[32m✓[0m Get Student Details
+[32m✓[0m Get Student Extended Details
+
+[1m[36m━━━ Phase 4: Teachers Management Tests ━━━[0m
+
+[32m✓[0m Get Teachers List
+
+[1m[36m━━━ Phase 5: Classes Tests ━━━[0m
+
+[32m✓[0m Get Classes List
+
+[1m[36m━━━ Phase 6: Subjects Tests ━━━[0m
+
+[32m✓[0m Get Subjects List
+
+[1m[36m━━━ Phase 7: Schedules Tests ━━━[0m
+
+[32m✓[0m Get My Schedule (Student)
+[32m✓[0m Get All Schedules (Admin)
+
+[1m[36m━━━ Phase 8: Fees Tests ━━━[0m
+
+[32m✓[0m Get Fees List
+
+[1m[36m━━━ Phase 9: Absences Tests ━━━[0m
+
+[32m✓[0m Get Absences List
+
+[1m[36m━━━ Phase 10: Courses Tests ━━━[0m
+
+[32m✓[0m Get Courses List
+
+[1m[36m━━━ Phase 11: Exams Tests ━━━[0m
+
+[32m✓[0m Get Independent Exams
+
+[1m[36m━━━ Phase 12: Chat Tests ━━━[0m
+
+[32m✓[0m Get Chat Contacts
+
+[1m[36m━━━ Phase 13: Notifications Tests ━━━[0m
+
+[32m✓[0m Get Notifications
+
+[1m[36m━━━ Phase 14: Dashboard Tests ━━━[0m
+
+[32m✓[0m Get Dashboard Stats
+[32m✓[0m Get Attendance Stats
+[32m✓[0m Get System Activities
+
+[1m[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+[1m           TEST SUMMARY REPORT[0m
+[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+
+Total Tests:   [1m24[0m
+Passed:        [32m23[0m
+Failed:        [31m1[0m
+Success Rate:  [1m95.83%[0m
+Duration:      [1m5.56s[0m
+
+[31m[1mFailed Tests:[0m
+  [31m✗[0m User Registration
+    [33mStatus: 400, Message: Validation failed[0m
+
+[36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m
+
+[34mDetailed report saved to: /home/memo/SchoolManagerDB/server/test-report.json[0m
+

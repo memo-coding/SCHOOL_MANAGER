@@ -1,0 +1,102 @@
+Design the exact MongoDB schemas we agreed on with these specific fields:
+
+## USER SCHEMA:
+{
+  username: String (unique, required),
+  email: String (unique, required),
+  password: String (required, minlength: 6),
+  role: ['super_admin', 'admin', 'teacher', 'student'],
+  personal_info: {
+    first_name: String (required),
+    last_name: String (required),
+    phones: [{
+      number: String,
+      type: ['mobile', 'home', 'work']
+    }],
+    addresses: [{
+      address_line: String,
+      city: String,
+      state: String,
+      postal_code: String,
+      type: ['home', 'work', 'billing']
+    }],
+    birth_date: Date,
+    gender: ['male', 'female'],
+    national_id: String,
+    emergency_contact: {
+      name: String,
+      relation: String,
+      phone: String
+    }
+  },
+  is_active: Boolean (default: true),
+  last_login: Date
+}
+
+## STUDENT SCHEMA:
+{
+  user_id: ObjectId (ref: 'User', unique),
+  student_code: String (unique, required),
+  class_id: ObjectId (ref: 'Class', required),
+  enrollment_date: Date (default: Date.now),
+  parent_info: {
+    father: {
+      name: String,
+      phone: String,
+      email: String,
+      occupation: String
+    },
+    mother: {
+      name: String,
+      phone: String,
+      email: String,
+      occupation: String
+    },
+    guardian: {
+      name: String,
+      phone: String,
+      email: String,
+      relation: String
+    }
+  },
+  academic_status: ['active', 'transferred', 'graduated', 'suspended'],
+  fee_status: ['paid', 'pending', 'overdue', 'partial']
+}
+
+## FEE SCHEMA:
+{
+  student_id: ObjectId (ref: 'Student', required),
+  academic_year: String (required),
+  term: ['first', 'second', 'third'],
+  fee_type: ['tuition', 'transportation', 'books', 'uniform', 'activities', 'other'],
+  amount: Number (required, min: 0),
+  due_date: Date (required),
+  paid_amount: Number (default: 0),
+  payment_date: Date,
+  status: ['paid', 'pending', 'overdue', 'partial', 'cancelled'],
+  payment_method: ['cash', 'bank_transfer', 'credit_card', 'check', 'online'],
+  transaction_id: String,
+  notes: String,
+  created_by: ObjectId (ref: 'User', required)
+}
+
+## ABSENCE SCHEMA:
+{
+  student_id: ObjectId (ref: 'Student', required),
+  class_subject_id: ObjectId (ref: 'ClassSubject', required),
+  date: Date (required),
+  session: ['morning', 'afternoon'],
+  period: ['full_day', 'first_period', 'second_period'],
+  reason: ['sickness', 'family', 'vacation', 'other'],
+  reported_by: ObjectId (ref: 'User', required),
+  status: ['pending', 'approved', 'rejected']
+}
+
+## KEY FEATURES TO IMPLEMENT:
+1. Automatic fee status calculation based on payments
+2. Dynamic absence days calculation from absence records
+3. Student details aggregation with subjects and absence count
+4. Class fee reports
+5. Multi-teacher support per subject per class
+
+Ensure all relationships and business logic we discussed are implemented!
